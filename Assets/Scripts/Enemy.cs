@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
@@ -8,13 +11,14 @@ public class Enemy : MonoBehaviour
     [SerializeField] float maxTimeBetweenShots = 3f;
     [SerializeField] GameObject enemyProjectile;
     [SerializeField] float projectileSpeed = 5.0f;
+    [SerializeField] GameObject explosionParticles;
 
     // Vector3 projectileOffset = new Vector3(0f, -0.5f, 0f);
 
     // Start is called before the first frame update
     void Start()
     {
-        shotCounter = Random.Range(minTimeBetweenShots, maxTimeBetweenShots);
+        shotCounter = UnityEngine.Random.Range(minTimeBetweenShots, maxTimeBetweenShots);
     }
 
     // Update is called once per frame
@@ -36,7 +40,7 @@ public class Enemy : MonoBehaviour
     {
         GameObject projectile = Instantiate(enemyProjectile, transform.position, Quaternion.identity) as GameObject;
         projectile.GetComponent<Rigidbody2D>().velocity = new Vector2(0, -projectileSpeed);
-        shotCounter = Random.Range(minTimeBetweenShots, maxTimeBetweenShots);
+        shotCounter = UnityEngine.Random.Range(minTimeBetweenShots, maxTimeBetweenShots);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -53,7 +57,17 @@ public class Enemy : MonoBehaviour
         damageDealer.Hit();
         if (health <= 0)
         {
+            GameObject explosion = Instantiate(explosionParticles, transform.position, Quaternion.identity) as GameObject;
+            //StartCoroutine(RemoveExplosion(explosion));
+            Destroy(explosion, 1);
             Destroy(gameObject);
+            
         }
+    }
+
+    IEnumerator RemoveExplosion(GameObject explosion)
+    {
+        yield return new WaitForSeconds(1);
+        Destroy(explosion);
     }
 }

@@ -113,6 +113,8 @@ MonoBehaviour:
   enemyProjectile: {fileID: 7215572649449437723, guid: 328e5014350f48e44a5f008e0efab880,
     type: 3}
   projectileSpeed: 10
+  explosionParticles: {fileID: 5748068804362258325, guid: 750caff94b1332f4fb06b4979f258069,
+    type: 3}
 --- !u!60 &4638476091038292181
 PolygonCollider2D:
   m_ObjectHideFlags: 0
