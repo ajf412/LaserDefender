@@ -15,6 +15,7 @@ public class WaveConfig : ScriptableObject
 
     // GETs for parameters
     public GameObject GetEnemyPrefab() { return enemyPrefab; }
+
     public List<Transform> GetWaypoints()
     {
         var waveWaypoints = new List<Transform>();
@@ -25,9 +26,13 @@ public class WaveConfig : ScriptableObject
 
         return waveWaypoints;
     }
+
     public float GetTimeBetweenSpawns() { return timeBetweenSpawns; }
+
     public float GetSpawnRandomFactor() { return spawnRandomFactor; }
+
     public int GetNumberOfEnemies() { return numberOfEnemies; }
+
     public float GetMoveSpeed() { return moveSpeed; }
 
 
