@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] GameObject enemyProjectile;
     [SerializeField] float projectileSpeed = 5.0f;
     [SerializeField] GameObject explosionParticles;
+    [SerializeField] float durationOfExplosion = 1f;
 
     // Vector3 projectileOffset = new Vector3(0f, -0.5f, 0f);
 
@@ -57,17 +58,14 @@ public class Enemy : MonoBehaviour
         damageDealer.Hit();
         if (health <= 0)
         {
-            GameObject explosion = Instantiate(explosionParticles, transform.position, Quaternion.identity) as GameObject;
-            //StartCoroutine(RemoveExplosion(explosion));
-            Destroy(explosion, 1);
-            Destroy(gameObject);
-            
+            Die();
         }
     }
 
-    IEnumerator RemoveExplosion(GameObject explosion)
+    private void Die()
     {
-        yield return new WaitForSeconds(1);
-        Destroy(explosion);
+        GameObject explosion = Instantiate(explosionParticles, transform.position, Quaternion.identity) as GameObject;
+        Destroy(explosion, durationOfExplosion);
+        Destroy(gameObject);
     }
 }
