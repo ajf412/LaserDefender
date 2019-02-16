@@ -2,19 +2,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
     // Configuration Parameters
+    [Header("Game")]
+    [SerializeField] GameObject gameManager;
     [Header("Player")]
     [SerializeField] float moveSpeed = 10f;
     [SerializeField] float padding = 1f;
     [SerializeField] float health = 200f;
-
+    [SerializeField] List<AudioClip> explosionSounds;
+    [SerializeField] [Range(0, 1)] float deathSoundVolume = 0.75f;
     [Header("Projectile")]
     [SerializeField] GameObject playerLaser;
     [SerializeField] float projectileSpeed = 10f;
     [SerializeField] float projectileFiringPeriod = 0.1f;
+    [SerializeField] List<AudioClip> weaponsFire;
+    [SerializeField] [Range(0, 1)] float weaponsVolume = 0.75f;
 
 
     float xMin, xMax, yMin, yMax;
@@ -33,6 +39,11 @@ public class Player : MonoBehaviour
         Fire();
     }
 
+    public float GetHealth()
+    {
+        return health;
+    }
+
     private void Fire()
     {
         if (Input.GetButton("Fire1"))
@@ -42,6 +53,8 @@ public class Player : MonoBehaviour
                 canFire = false;
                 GameObject laser = Instantiate(playerLaser, transform.position, Quaternion.identity) as GameObject;
                 laser.GetComponent<Rigidbody2D>().velocity = new Vector2(0, projectileSpeed);
+                AudioClip clip = weaponsFire[UnityEngine.Random.Range(0, weaponsFire.Count)];
+                AudioSource.PlayClipAtPoint(clip, Camera.main.transform.position, weaponsVolume);
                 StartCoroutine(FireContinuously());
             }
             
@@ -90,7 +103,15 @@ public class Player : MonoBehaviour
         damageDealer.Hit();
         if (health <= 0)
         {
-            Destroy(gameObject);
+            Die();
         }
+    }
+
+    private void Die()
+    {
+        AudioClip clip = explosionSounds[UnityEngine.Random.Range(0, explosionSounds.Count)];
+        AudioSource.PlayClipAtPoint(clip, Camera.main.transform.position, deathSoundVolume);
+        Destroy(gameObject);
+        FindObjectOfType<Level>().LoadGameOver();
     }
 }

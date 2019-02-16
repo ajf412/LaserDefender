@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 2551287988120749761}
   - component: {fileID: 1018248603473718225}
   - component: {fileID: 3910490419476882952}
+  - component: {fileID: 5623547062484277871}
+  - component: {fileID: 3553183736750059489}
   m_Layer: 9
   m_Name: Enemy_02
   m_TagString: Untagged
@@ -107,14 +109,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  explosionParticles: {fileID: 5748068804362258325, guid: 750caff94b1332f4fb06b4979f258069,
+    type: 3}
+  durationOfExplosion: 1
+  explosionSounds:
+  - {fileID: 8300000, guid: 2a1c03a57d8c87e42bcd247f6d85e9ec, type: 3}
+  - {fileID: 8300000, guid: eb03d9474e65d1a4c9e2ad33edc1cb74, type: 3}
+  - {fileID: 8300000, guid: b4d0b7821e3301d49984b2b0580946c9, type: 3}
+  - {fileID: 8300000, guid: 76028504248aa1147b5970b975e23e41, type: 3}
+  deathSoundVolume: 0.75
+  enemyProjectile: {fileID: 7215572649449437723, guid: 328e5014350f48e44a5f008e0efab880,
+    type: 3}
   shotCounter: 0
   minTimeBetweenShots: 0.2
   maxTimeBetweenShots: 3
-  enemyProjectile: {fileID: 7215572649449437723, guid: 328e5014350f48e44a5f008e0efab880,
-    type: 3}
   projectileSpeed: 10
-  explosionParticles: {fileID: 5748068804362258325, guid: 750caff94b1332f4fb06b4979f258069,
-    type: 3}
+  weaponsFire:
+  - {fileID: 8300000, guid: 427388c79ffd53c4ab1f03f5844e0569, type: 3}
+  - {fileID: 8300000, guid: b211197207a199448a191540e434967b, type: 3}
+  - {fileID: 8300000, guid: a1e1108bd3ca91847806abcb823f023f, type: 3}
+  weaponsVolume: 0.4
 --- !u!60 &3910490419476882952
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -125,7 +139,7 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -148,3 +162,37 @@ PolygonCollider2D:
       - {x: 0.40394992, y: -0.19369936}
       - {x: 0.41, y: 0.27974987}
       - {x: 0.17714864, y: 0.41999912}
+--- !u!50 &5623547062484277871
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6735441328283976693}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!114 &3553183736750059489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6735441328283976693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef06aa57d5b55f94886b07f66c0f5946, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 200

@@ -40,6 +40,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Projectiles
+    uniqueID: 453685629
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

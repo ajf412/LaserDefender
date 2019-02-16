@@ -94,13 +94,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aae97eb4e0a9dea428e8d51675bd4b75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 2209781214158540392, guid: 9a58468e7c5cff341a1dfd162fc218d4,
+    type: 3}
   moveSpeed: 10
   padding: 0.5
   health: 200
+  explosionSounds:
+  - {fileID: 8300000, guid: 2a1c03a57d8c87e42bcd247f6d85e9ec, type: 3}
+  - {fileID: 8300000, guid: eb03d9474e65d1a4c9e2ad33edc1cb74, type: 3}
+  - {fileID: 8300000, guid: b4d0b7821e3301d49984b2b0580946c9, type: 3}
+  - {fileID: 8300000, guid: 76028504248aa1147b5970b975e23e41, type: 3}
+  deathSoundVolume: 0.75
   playerLaser: {fileID: 2644789689700939143, guid: 720b0a678e2686044bc4d1191b4d8037,
     type: 3}
   projectileSpeed: 20
   projectileFiringPeriod: 0.2
+  weaponsFire:
+  - {fileID: 8300000, guid: 3e71926e04272db4e970aef49a641aae, type: 3}
+  - {fileID: 8300000, guid: 9e11d9719013902418ce3554d442cd9a, type: 3}
+  weaponsVolume: 0.403
 --- !u!50 &1715765954
 Rigidbody2D:
   serializedVersion: 4
